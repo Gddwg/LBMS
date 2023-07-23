@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.libms.mapper.ReaderMapper">
+
+    <select id="list" resultType="com.libms.pojo.Reader">
+        select *
+        from reader_info
+        <where>
+            <if test="rname != null and rname != ''">
+                rname like concat('%',#{rname},'%')
+            </if>
+            <if test="rid != null and rid != ''">
+                and rid = #{rid}
+            </if>
+            <if test="sex != null and sex != ''">
+                and sex = #{sex}
+            </if>
+        </where>
+    </select>
+</mapper>
